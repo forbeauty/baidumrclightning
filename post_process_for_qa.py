@@ -297,7 +297,7 @@ def postprocess_qa_predictions(examples,
             # Add the minimum null prediction
             prelim_predictions.append(min_null_prediction)
             pred_cls_label = True if np.argmax(np.array(answerable_probs)) == 0 else False
-            all_cls_predictions.append([example['id'], pred_cls_label, answerable_probs[0], answerable_probs[1]])
+            # all_cls_predictions.append([example['id'], pred_cls_label, answerable_probs[0], answerable_probs[1]])
 
         # Only keep the best `n_best_size` predictions.
         predictions = sorted(
@@ -350,9 +350,9 @@ def postprocess_qa_predictions(examples,
                 all_predictions[example['id']] = best_non_null_pred['text']
 
         # Make `predictions` JSON-serializable by casting np.float back to float.
-        all_nbest_json[example["id"]] = [{
-            k: (float(v)
-                if isinstance(v, (np.float16, np.float32, np.float64)) else v)
-            for k, v in pred.items()
-        } for pred in predictions]
-    return all_predictions, all_nbest_json, all_cls_predictions
+        # all_nbest_json[example["id"]] = [{
+        #     k: (float(v)
+        #         if isinstance(v, (np.float16, np.float32, np.float64)) else v)
+        #     for k, v in pred.items()
+        # } for pred in predictions]
+    return all_predictions#, all_nbest_json, all_cls_predictions

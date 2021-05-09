@@ -295,7 +295,7 @@ class MRCModel(pl.LightningModule):
         all_end_logits = all_end_logits.detach().cpu().numpy()
         all_cls_logits = all_cls_logits.detach().cpu().numpy()
 
-        all_predictions, all_nbest_json, all_cls_predictions = postprocess_qa_predictions(
+        all_predictions = postprocess_qa_predictions(
             self.datamodule.val_dataset.examples,
             self.datamodule.val_dataset.tokenized_examples,
             (all_start_logits, all_end_logits, all_cls_logits),
@@ -345,7 +345,7 @@ class MRCModel(pl.LightningModule):
         all_start_logits = all_start_logits.detach().cpu().numpy()
         all_end_logits = all_end_logits.detach().cpu().numpy()
         all_cls_logits = all_cls_logits.detach().cpu().numpy()
-        all_predictions, all_nbest_json, all_cls_predictions = postprocess_qa_predictions(
+        all_predictions = postprocess_qa_predictions(
             self.datamodule.test_dataset.examples,
             self.datamodule.test_dataset.tokenized_examples,
             (all_start_logits, all_end_logits, all_cls_logits),
